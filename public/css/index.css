@@ -1,0 +1,34 @@
+:root{
+    --main-bg: #f5f5f5;
+    --secundary-color:"#f5f5f5";
+    --contrast-color:"#f5f5f5";
+    --font-color: #333;
+    --font-color-light: #666;
+    --foreground-color: #fff;
+    --button-color:"#f5f5f5";
+    --font-family: 'Roboto', sans-serif;
+}
+.header{
+    padding-bottom: 2px;
+}
+.header-div{
+    display: flex;
+}
+.header-logo{
+    width: 90px;
+    height: 90px;
+}
+.header-title{
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--font-color);
+    justify-self: center;
+}
+a{
+    text-decoration: none;
+    color: var(--font-color);
+}   
+a:visited{
+    color: var(--font-color);
+}
+

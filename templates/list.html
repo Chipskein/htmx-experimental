@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/htmx-min.js"></script>
+    <title>A M X</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-div">
+            <div class="header-div-logo">
+                <img class="header-logo" src="/images/logo.png" alt="Logo do site">
+            </div>
+            <div class="header-div-title">
+                <h2 class="header-title">A N X</h2>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div>
+            <form hx-post="/animes" hx-target=".anime-list" hx-swap="beforeend">
+                <label>Name: <input type="text" name="text"></label> <br>
+                <label>MyAnimeListLink:<input type="text" name="link"></label><br>
+                <label>ImageUrl:<input type="text" name="image"></label><br>
+                <label>Studio: <input type="text" name="studio"></label><br>
+                <label>Started At:<input type="text" name="started_at"></label><br>
+                <label>Description:<input type="text" name="description"></label>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="anime-list">
+            <div class="anime-card">
+                {{ range . }}
+                    <div class="anime-div-image">
+                        <img class="anime-image" src="{{ .Image }}" alt="Imagem do anime">
+                    </div>
+                    <div class="anime-info">
+                        <p class="anime-title"><a href="{{.Title.Link}}">{{ .Title.Text }}</a></p>
+                        <p class="anime-studio">Studio:  {{ .Studio }}</p>
+                        <p class="anime-start-date">Started At: {{ .Start_date }}</p>
+                        <p class="anime-description">{{ .Description }}</p>
+                    </div>
+                {{ end }}   
+            </div>
+        </div>
+    </main>
+</body>
+</html>
