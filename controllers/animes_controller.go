@@ -28,11 +28,15 @@ func HandleRequest(w http.ResponseWriter, r *http.Request) {
 		ListAnimes(w, r)
 	case http.MethodPost:
 		CreateAnime(w, r)
+	case http.MethodDelete:
+		DeleteAnime(w, r)
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
 }
-
+func DeleteAnime(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+}
 func CreateAnime(w http.ResponseWriter, r *http.Request) {
 	var anime Anime = Anime{
 		Studio:      r.FormValue("studio"),
@@ -58,18 +62,6 @@ func CreateAnime(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	animes = append(animes, anime)
-	jsonData, err := json.Marshal(animes)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Could not Insert anime data in data/data.json"))
-		return
-	}
-	err = os.WriteFile("data/data.json", jsonData, 0644)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Could not Insert anime data in data/data.json"))
-		return
-	}
 	html := fmt.Sprintf(`<div class='anime-card'><div class='anime-div-image'><img class='anime-image' src=%s alt='Imagem do anime'></div><div class='anime-info'><p class='anime-title'><a href=%s>%s</a></p><p class='anime-studio'>Studio:%s</p><p class='anime-start-date'>Started At:%s</p><p class='anime-description'>%s</p></div></div>`, anime.Image, anime.Title.Link, anime.Title.Text, anime.Studio, anime.Start_date, anime.Description)
 	tmpl, _ := template.New("anime-card").Parse(html)
 	tmpl.Execute(w, nil)

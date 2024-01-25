@@ -20,32 +20,70 @@
         </div>
     </header>
     <main>
-        <div>
-            <form hx-post="/animes" hx-target=".anime-list" hx-swap="beforeend">
-                <label>Name: <input type="text" name="text"></label> <br>
-                <label>MyAnimeListLink:<input type="text" name="link"></label><br>
-                <label>ImageUrl:<input type="text" name="image"></label><br>
-                <label>Studio: <input type="text" name="studio"></label><br>
-                <label>Started At:<input type="text" name="started_at"></label><br>
-                <label>Description:<input type="text" name="description"></label>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-        <div class="anime-list">
-            <div class="anime-card">
+        <div class="main">
+            <div class="anime-list">
+                <h1>Anime List</h1>
                 {{ range . }}
+                <div class="anime-card">
                     <div class="anime-div-image">
-                        <img class="anime-image" src="{{ .Image }}" alt="Imagem do anime">
+                        <img class="anime-image anime-image-div" src="{{ .Image }}" alt="Imagem do anime">
+                        <img class="icone-delete icon-delete-div" src="/images/remove.png" alt="DELETAR ANIME" hx-confirm="Are you sure?" hx-target="closest .anime-card" hx-swap="outerHTML swap:1s" hx-delete="/animes">
                     </div>
                     <div class="anime-info">
                         <p class="anime-title"><a href="{{.Title.Link}}">{{ .Title.Text }}</a></p>
-                        <p class="anime-studio">Studio:  {{ .Studio }}</p>
-                        <p class="anime-start-date">Started At: {{ .Start_date }}</p>
+                        <p class="anime-studio"><span>Studio:</span>{{ .Studio }}</p>
+                        <p class="anime-start-date"><span>Started At:</span>{{ .Start_date }}</p>
                         <p class="anime-description">{{ .Description }}</p>
                     </div>
+                </div>
                 {{ end }}   
+            </div>
+            <div class="form-div">
+                <h1>Create new anime</h1>
+                <div class="form-div-content">
+                    <img class="anime-image" src="https://cdn.myanimelist.net/images/anime/1347/117616l.jpg" alt="Default image" id="preview-image">
+                    <div class="anime-info">
+                        <form hx-post="/animes" hx-target=".anime-list" hx-swap="beforeend">
+                            <label for="text" class="anime-title">
+                                <input class="input anime-title" type="text" name="text" required placeholder="Anime Name">
+                            </label> 
+                            
+                            <label for="studio" class="anime-studio label">
+                                <span>Studio:</span>
+                                <input class="input anime-studio" type="text" name="studio" required placeholder="Anime Studio">
+                            </label>
+                            <label for="started_at" class="anime-start-date label">
+                                <span>Started At:</span>
+                                <input class="input anime-start-date"  type="text" name="started_at" required placeholder="Aired Date">
+                            </label>
+                            <label for="description" class="anime-description">
+                                <textarea class="anime-description" placeholder="Description/Sinopse" name="description" required id="description"></textarea>
+                            </label>
+                            <label for="link">
+                                <input class="input" type="text" name="link" required placeholder="MyAnimeList Link">
+                            </label>
+                            <label for="image">
+                                <input class="input"  type="text" name="image" required id="input-image" placeholder="Anime Image URl">
+                            </label>
+                            <br>
+                            <label for="" name="submit">
+                                <input type="submit" value="+" name="submit">
+                            </label>
+                            
+                        </form>
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 </body>
+<script>
+    const image_preview=document.getElementById("preview-image")
+    const input_image=document.getElementById("input-image")
+    input_image.addEventListener("change",(e)=>{
+        const url=e.target.value
+        image_preview.src=url
+    })
+</script>
 </html>

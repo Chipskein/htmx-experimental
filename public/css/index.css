@@ -1,15 +1,6 @@
-:root{
-    --main-bg: #f5f5f5;
-    --secundary-color:"#f5f5f5";
-    --contrast-color:"#f5f5f5";
-    --font-color: #333;
-    --font-color-light: #666;
-    --foreground-color: #fff;
-    --button-color:"#f5f5f5";
-    --font-family: 'Roboto', sans-serif;
-}
 .header{
     padding-bottom: 2px;
+    border-bottom: 2px solid black
 }
 .header-div{
     display: flex;
@@ -31,4 +22,98 @@ a{
 a:visited{
     color: var(--font-color);
 }
+.main{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(auto-fill, 600px);
+    grid-gap: 100px;
+}
+.anime-list{
+    display: flex;
+    flex-direction: column;
+}
+.anime-card{
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.2);   
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 600px;
+    height: 300px;
+    margin-bottom: 50px;
+}
+.anime-image{
+    width: 200px;
+    height: 300px;
+}
+.anime-info{
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height: 300px;
+}
+.anime-title{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: medium;
+}
+.anime-studio>span{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    font-weight: bold;
+}
+.anime-start-date>span{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    font-weight: bold;
+}
+.anime-description{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: xx-small;
+    font-style: italic;
+}
 
+.form-div{
+    justify-content: center;
+}
+.form-div-content{
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.2);   
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 600px;
+    height: 300px;
+    margin-bottom: 50px;
+}
+.label{
+    display: inline-flex;
+}
+.input{
+    margin: 0px;
+    padding: 0px;
+    justify-content: left;
+    border: none;
+    border-bottom: 2px solid;
+}
+#description{
+    width: 150px;
+    height: 80px;
+}
+.icone-delete{
+    width: 20px;
+    height: 20px;
+}
+.anime-div-image{
+    position: relative;
+}
+.icon-delete-div{
+    position: absolute;
+    top: 0px;
+}
+.anime-image-div{
+    position: absolute;
+    top: 0px;
+}
+div.htmx-swapping div {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+textarea.anime-description{
+    resize: none;
+}
